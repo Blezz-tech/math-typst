@@ -11,7 +11,7 @@
     numbering: "1",
     number-align: center,
   )
-  set text(font: "Noto Sans", lang: "ru")
+  set text(font: "Noto Serif", lang: "ru")
 
   // Title row.
   align(center)[
