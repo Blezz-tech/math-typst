@@ -10,7 +10,7 @@
 
 #answer("Решение")
 
-$angle$ "BAC" - Общий
+$angle$ BAC - Общий
 
 $D E = 1/2 A B$
 

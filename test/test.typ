@@ -179,5 +179,13 @@ digraph mygraph {
 
 // #quote[To be or not to be]
 
-= 8. 
+= 8. math
 
+
+
+$
+a &=b & quad c&=d \
+e &=f & g&=h
+$
+
+= 9. 
