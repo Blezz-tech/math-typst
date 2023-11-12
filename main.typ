@@ -9,4 +9,6 @@
 
 // Документ
 
+#outline(indent: 12pt)
+
 #include "./Дата/2023.09.03.typ"
