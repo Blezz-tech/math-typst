@@ -21,50 +21,85 @@
 }
 
 
-#let cilynder(point, width, height, R) = {
+#let cunstom-circle(point, width, dots: none) = {
+  import cetz.draw: *
+
+  let st  = (start: 0deg, stop:  180deg) // (start, stop)
+  let st1 = (start: 0deg, stop: -180deg) // (start1, stop1)
+
+  arc(point, ..st,  ..width, stroke: (dash: dots))
+  arc(point, ..st1, ..width)
+}
+
+#let cilynder( point:  (0, 0)
+              , width:  4
+              , height: 4
+              , water: 50
+              , colors: ( top: none
+                        , bottom: none
+                        , lateral: none
+                        )
+              ) = {
   import cetz.draw: *
   import cetz.vector: sub, add
   
   let (x, y) = point
-  let R1 = (x, R)
-  let default = (radius: (width, 0.5))
 
-  let start1 = (start: 0deg)
-  let stop_i = (stop:  180deg)
-  let stop_d = (stop: -180deg)
+  // rectangle cilynder
+  let R = ( left:   x - width / 2
+          , right:  x + width / 2
+          , bottom: y
+          , top:    y + height
+          )
 
-  let P_t = add(point, (0, height))
+  // points of cilynder
+  let P = ( tr: ( R.right, R.top    )
+          , tl: ( R.left , R.top    )
+          , tm: ( x      , height   )
+          , br: ( R.right, R.bottom )
+          , bl: ( R.left , R.bottom )
+          , bm: point
+          )
+
   
-  let color = blue.lighten(80%)
+  let fill1 = height * water / 100
 
-  let widthDefault = (width, 0)
-  let widthR = (radius: add(widthDefault, (0, 0.5)))
+  let width-r = (radius: add((width/2, 0), (0, 0.5)))
+
+  let P1 = (..P
+           , tr: sub(P.tr, (0, fill1))
+           , tl: sub(P.tl, (0, fill1))
+           , tm: sub(P.tm, (0, fill1))
+           )
+
+
+  // paint middle surface
+  if colors.lateral != none {
+    rect( P1.bl, P1.tr, fill: colors.lateral)
+    circle(P.bm, fill: white, ..width-r, stroke: none)
+    circle(P.tm, fill: white, ..width-r, stroke: none)
+  }
+
+  // paint top surface
+  if colors.top    != none { circle(P1.bm, fill: colors.top   , ..width-r, stroke: none) }
+
+  // paint bottom surface
+  if colors.bottom != none { circle(P1.tm, fill: colors.bottom, ..width-r, stroke: none) }
+
+  // top surface
+  circle(P.tm, ..width-r)
+
+  // bottom surface
+  cunstom-circle(P.br, width-r, dots: "dashed")
   
-  let P_i = add(point, widthDefault)
-  let P_d = sub(point, widthDefault)
-  let P1_i = add(P_t, widthDefault)
-  let P1_d = sub(P_t, widthDefault)
-  let R_i = add(R1, widthDefault)
+  // middle surface
+  if fill != 0 {
+    cunstom-circle(P1.tr, width-r, dots: "dashed")
+  }
 
-  // Окраска водой
-  rect(P_d, R_i, fill: color, stroke: none)
-  circle(point, ..widthR, stroke: color, fill: blue.lighten(80%))
-  circle(R1, ..widthR, fill: color, stroke: none)
-
-  // Уровень воды
-  arc(R_i, ..start1, ..stop_i, ..widthR, stroke: (dash: "dashed") )
-  arc(R_i, ..start1, ..stop_d, ..widthR)
-
-  // Дно
-  arc(P_i, ..start1, ..stop_i, ..widthR, stroke: (dash: "dashed") )
-  arc(P_i, ..start1, ..stop_d, ..widthR)
-
-  // Крышка
-  circle(P_t, ..widthR)
-  
-  // Боковые стороны
-  line(P_d, P1_d)
-  line(P_i, P1_i)
+  // lines
+  line(P.bl, P.tl)
+  line(P.br, P.tr)
 }
 
 #let defaultStyle = ( mark:   ( fill: black )

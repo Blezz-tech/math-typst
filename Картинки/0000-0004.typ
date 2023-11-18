@@ -1,5 +1,5 @@
 #import "@preview/cetz:0.1.2"
-#import "/lib/my_cetz.typ": cilynder, defaultStyle
+#import "/lib/my_cetz.typ": cilynder
 
 #set align(center)
 
@@ -7,10 +7,37 @@
 #cetz.canvas(length: 0.5cm, {
   import cetz.draw: *
 
-  set-style = defaultStyle
-
-  cilynder((0, 0), 2, 5, 3.5)
+  let cilynder-color = blue.lighten(80%)
   
-  cilynder((6, 0), 3, 5, 2)
+  cilynder( width:  4
+          , height: 5
+          , water: 70
+          , colors: ( top: cilynder-color
+                    , bottom:  cilynder-color
+                    , lateral: cilynder-color
+                    )
+          )
+
+  cilynder( point:  (6, 0)
+          , width:  6
+          , height: 5
+          , water: 35
+          , colors: ( top: cilynder-color
+                    , bottom:  cilynder-color
+                    , lateral: cilynder-color
+                    )
+          )
+
+  // cilynder( point:  (6, 0)
+  //         , width:  6
+  //         , height: 2
+  //         , colors: ( top: cilynder-color
+  //                   , bottom:  cilynder-color
+  //                   , lateral: cilynder-color
+  //                   )
+  //         , lines: ( top: "dashed"
+  //                  , bottom: "dashed"
+  //                  )
+  //         )
 })
 
