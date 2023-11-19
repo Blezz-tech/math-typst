@@ -28,16 +28,5 @@
                     )
           )
 
-  // cilynder( point:  (6, 0)
-  //         , width:  6
-  //         , height: 2
-  //         , colors: ( top: cilynder-color
-  //                   , bottom:  cilynder-color
-  //                   , lateral: cilynder-color
-  //                   )
-  //         , lines: ( top: "dashed"
-  //                  , bottom: "dashed"
-  //                  )
-  //         )
 })
 
