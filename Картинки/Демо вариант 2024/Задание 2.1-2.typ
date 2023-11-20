@@ -33,23 +33,31 @@
   let pointsX = ((1, $ 1 $), (5, $ 5 $), (11, $ 11 $))
   for (x, ct) in pointsX {
     let point = (x, 0)
-    circle(point, radius: 1pt, fill: black)
-    content(point, ct, anchor: "top-right", padding: 0.2)
+    circle(point, radius: 1pt, fill: blue.darken(20%), stroke: blue.darken(20%))
+    content(point, text(blue, [#ct]), anchor: "top-right", padding: 0.2)
   }
   
   // Точки Оси Y
   let pointsY = ((1, $ 1 $), (2, $ 2 $), (3, $ 3 $), (5, $ 5 $), (8, $ 8 $))
   for (y, ct) in pointsY {
     let point = (0, y)
-    circle(point, radius: 1pt, fill: black)
-    content(point, ct, anchor: "top-right", padding: 0.2)
+    circle(point, radius: 1pt, fill: blue.darken(20%), stroke: blue.darken(20%))
+    content(point, text(blue, [#ct]), anchor: "top-right", padding: 0.2)
   }
 
+  // Вектор A
   let (A, A1) = ((1,2), (5,8))
   line(A, A1, mark: (end: ">"))
   content(div(add(A, A1), 2), $ arrow(a) $, anchor: "bottom-right")
-  
+
+  content(A,  text(blue)[$ (1; 2) $], anchor: "left")
+  content(A1, text(blue)[$ (5; 8) $], anchor: "left")
+
+  // Вектор B
   let (B, B1) = ((5,5), (11,3))
   line(B, B1, mark: (end: ">"))
   content(div(add(B, B1), 2), $ arrow(b) $, anchor: "bottom-left")
+  
+  content(B,  text(blue)[$ (5;  5) $], anchor: "bottom")
+  content(B1, text(blue)[$ (11; 3) $], anchor: "left")
 })
