@@ -103,7 +103,7 @@
 }
 
 #let defaultStyle = ( mark:   ( fill: black )
-           , stroke: ( thickness: 0.5pt
+           , stroke: ( thickness: 1pt
                      , cap: "round"
                      , paint: black
                      )

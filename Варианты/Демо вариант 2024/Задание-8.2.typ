@@ -75,43 +75,26 @@
   // График линии
   line((1.4, 5), (7.15, -5), stroke: 0.75pt + green)
 
-  set-style( content: ( padding: 0.2
-                      )
-           , circle:  ( radius: 1pt
-                      , fill: black
-                      )
-           )
-
   // Центр
   let O = (0,0)
-  
-  circle(O)
+  circle(O, radius: 1pt, fill: black)
   content(O, $ 0 $, anchor: "top-right")
-           
+
   // Точки Оси X
-  let (A, B, C) = ((1,0), (2,0), (6,0))
-  
-  circle(A)
-  content(A, $ 1 $, anchor: "top-right")
-  
-  circle(B)
-  content(B, $ 2 $, anchor: "top-right")
-  
-  circle(C)
-  content(C, $ 6 $, anchor: "top-right")
+  let pointsX = ((1, $ 1 $), (2, $ 2 $), (6, $ 6 $))
+  for (x, ct) in pointsX {
+    let point = (x, 0)
+    circle(point, radius: 1pt, fill: black)
+    content(point, ct, anchor: "top-right", padding: 0.2)
+  }
   
   // Точки Оси Y
-  let (D, E, F) = ((0,-3), (0,1), (0,4))
-  
-  circle(D)
-  content(D, $ -3 $, anchor: "top-right")
-  
-  circle(E)
-  content(E, $ 1 $, anchor: "top-right")
-  
-  circle(F)
-  content(F, $ 4 $, anchor: "top-right")
-
+  let pointsY = ((-3, $ -3 $), (1, $ 1 $), (4, $ 4 $))
+  for (y, ct) in pointsY {
+    let point = (0, y)
+    circle(point, radius: 1pt, fill: black)
+    content(point, ct, anchor: "top-right", padding: 0.2)
+  }
 
   // Точка для нахождения 
 })

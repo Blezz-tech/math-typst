@@ -22,4 +22,4 @@ cos (alpha + beta) = cos alpha dot cos beta - sin alpha dot sin beta
 $
 
 
-#include "./Дата/2023.09.03.typ"
+#include "/Варианты/Демо вариант 2024.typ"
