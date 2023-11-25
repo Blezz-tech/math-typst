@@ -31,3 +31,27 @@
     [#term]
   )
 ]
+
+#let emptyset = (normal: $diameter$)
+
+// https://github.com/typst/typst/issues/1595#issuecomment-1609971882
+#let ru_alph(pattern: "а)") = {
+  let alphabet = "абвгдежзиклмнопрстуфхцчшщэюя".split("")
+  let f(i) = {
+    let letter = alphabet.at(i)
+    let str = ""
+    for char in pattern {
+      if char == "а" {
+        str += letter
+      }
+      else if char == "А" {
+        str += upper(letter)
+      }
+      else {
+        str += char
+      }
+    }
+    str
+  }
+  f
+}
