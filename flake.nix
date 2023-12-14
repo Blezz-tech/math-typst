@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     devenv.url = "github:cachix/devenv";
   };
@@ -30,7 +30,14 @@
               modules = [
                 {
                   # https://devenv.sh/reference/options/
-                  packages = [ pkgs.hello ];
+                  packages = with pkgs; [
+                    pandoc
+                    typst
+                    # typst-lsp
+                    typst-fmt
+                    typst-live
+                    typst-preview
+                  ];
 
                   enterShell = ''
                     hello
